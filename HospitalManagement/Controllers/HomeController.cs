@@ -12,7 +12,7 @@ namespace HospitalManagement.Controllers
         {
             _logger = logger;
         }
-
+        // anh son day day
         public IActionResult Index()
         {
             return View();
