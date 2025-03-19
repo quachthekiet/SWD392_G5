@@ -129,21 +129,12 @@ public partial class HospitalManagerContext : DbContext
             entity.ToTable("Billing");
 
             entity.Property(e => e.BillId).HasColumnName("bill_id");
-            entity.Property(e => e.BillDate)
-                .HasColumnType("datetime")
-                .HasColumnName("bill_date");
+            entity.Property(e => e.BillDate).HasColumnType("datetime").HasColumnName("bill_date");
             entity.Property(e => e.DueDate).HasColumnName("due_date");
-            entity.Property(e => e.Notes)
-                .HasColumnType("text")
-                .HasColumnName("notes");
+            entity.Property(e => e.Notes).HasColumnType("text").HasColumnName("notes");
             entity.Property(e => e.PatientId).HasColumnName("patient_id");
-            entity.Property(e => e.PaymentStatus)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("payment_status");
-            entity.Property(e => e.TotalAmount)
-                .HasColumnType("decimal(10, 2)")
-                .HasColumnName("total_amount");
+            entity.Property(e => e.PaymentStatus).HasMaxLength(20).IsUnicode(false).HasColumnName("payment_status");
+            entity.Property(e => e.TotalAmount).HasColumnType("decimal(10, 2)").HasColumnName("total_amount");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Billings)
                 .HasForeignKey(d => d.PatientId)
@@ -229,21 +220,17 @@ public partial class HospitalManagerContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Medicati__3213E83FF73B2650");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Description)
-                .HasColumnType("text")
-                .HasColumnName("description");
-            entity.Property(e => e.Dosage)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("dosage");
-            entity.Property(e => e.Manufacturer)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("manufacturer");
             entity.Property(e => e.MedicationName)
                 .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("medication_name");
+                .HasColumnName("medication_name"); // No .IsUnicode(false) to use NVARCHAR
+            entity.Property(e => e.Dosage)
+                .HasMaxLength(50)
+                .HasColumnName("dosage"); // No .IsUnicode(false)
+            entity.Property(e => e.Manufacturer)
+                .HasMaxLength(100)
+                .HasColumnName("manufacturer"); // No .IsUnicode(false)
+            entity.Property(e => e.Description)
+                .HasColumnName("description"); // Maps to NVARCHAR(MAX) by default
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
