@@ -43,7 +43,7 @@ public partial class HospitalManagerContext : DbContext
     {
         if(!optionsBuilder.IsConfigured)
         {
-            var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetConnectionString("DB");
+            var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetConnectionString("DefaultConnection");
             optionsBuilder.UseSqlServer(connectionString);
         }
     }
