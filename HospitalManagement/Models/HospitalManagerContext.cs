@@ -40,6 +40,7 @@ public partial class HospitalManagerContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
     {
         if(!optionsBuilder.IsConfigured)
         {
@@ -47,6 +48,7 @@ public partial class HospitalManagerContext : DbContext
             optionsBuilder.UseSqlServer(connectionString);
         }
     }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
