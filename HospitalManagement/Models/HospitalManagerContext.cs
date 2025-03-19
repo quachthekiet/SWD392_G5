@@ -40,7 +40,6 @@ public partial class HospitalManagerContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-
     {
         if(!optionsBuilder.IsConfigured)
         {
@@ -54,7 +53,7 @@ public partial class HospitalManagerContext : DbContext
     {
         modelBuilder.Entity<Admission>(entity =>
         {
-            entity.HasKey(e => e.AdmissionId).HasName("PK__Admissio__3D9F8C724E4DE38B");
+            entity.HasKey(e => e.AdmissionId).HasName("PK__Admissio__3D9F8C72E042465E");
 
             entity.Property(e => e.AdmissionId).HasColumnName("admission_id");
             entity.Property(e => e.AdmissionDate)
@@ -72,16 +71,20 @@ public partial class HospitalManagerContext : DbContext
                 .HasColumnName("reason");
             entity.Property(e => e.RelativeName)
                 .HasMaxLength(100)
+                .IsUnicode(false)
                 .HasColumnName("relative_name");
             entity.Property(e => e.RelativePhone)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("relative_phone");
             entity.Property(e => e.RelativeRelationship)
                 .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("relative_relationship");
             entity.Property(e => e.RoomId).HasColumnName("room_id");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("status");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Admissions)
@@ -95,7 +98,7 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<Appointment>(entity =>
         {
-            entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__A50828FC5D4B311D");
+            entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__A50828FCF6F0A47F");
 
             entity.Property(e => e.AppointmentId).HasColumnName("appointment_id");
             entity.Property(e => e.AppointmentDate)
@@ -111,6 +114,7 @@ public partial class HospitalManagerContext : DbContext
                 .HasColumnName("reason");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("status");
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Appointments)
@@ -124,7 +128,7 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<Billing>(entity =>
         {
-            entity.HasKey(e => e.BillId).HasName("PK__Billing__D706DDB3C655AA36");
+            entity.HasKey(e => e.BillId).HasName("PK__Billing__D706DDB30567189E");
 
             entity.ToTable("Billing");
 
@@ -139,6 +143,7 @@ public partial class HospitalManagerContext : DbContext
             entity.Property(e => e.PatientId).HasColumnName("patient_id");
             entity.Property(e => e.PaymentStatus)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("payment_status");
             entity.Property(e => e.TotalAmount)
                 .HasColumnType("decimal(10, 2)")
@@ -151,11 +156,12 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<Department>(entity =>
         {
-            entity.HasKey(e => e.DepartmentId).HasName("PK__Departme__C2232422E0C54C60");
+            entity.HasKey(e => e.DepartmentId).HasName("PK__Departme__C22324221E8A9D97");
 
             entity.Property(e => e.DepartmentId).HasColumnName("department_id");
             entity.Property(e => e.DepartmentName)
                 .HasMaxLength(100)
+                .IsUnicode(false)
                 .HasColumnName("department_name");
             entity.Property(e => e.Description)
                 .HasColumnType("text")
@@ -164,23 +170,27 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<Doctor>(entity =>
         {
-            entity.HasKey(e => e.DoctorId).HasName("PK__Doctors__F3993564D9977D99");
+            entity.HasKey(e => e.DoctorId).HasName("PK__Doctors__F399356467BA0CA4");
 
-            entity.HasIndex(e => e.Email, "UQ__Doctors__AB6E616454AF76AD").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Doctors__AB6E6164986AE4FD").IsUnique();
 
             entity.Property(e => e.DoctorId).HasColumnName("doctor_id");
             entity.Property(e => e.DepartmentId).HasColumnName("department_id");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
+                .IsUnicode(false)
                 .HasColumnName("email");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("first_name");
             entity.Property(e => e.LastName)
                 .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("last_name");
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("phone_number");
 
             entity.HasOne(d => d.Department).WithMany(p => p.Doctors)
@@ -190,7 +200,7 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<MedicalRecord>(entity =>
         {
-            entity.HasKey(e => e.RecordId).HasName("PK__MedicalR__BFCFB4DD6DC7BC70");
+            entity.HasKey(e => e.RecordId).HasName("PK__MedicalR__BFCFB4DD99408A53");
 
             entity.Property(e => e.RecordId).HasColumnName("record_id");
             entity.Property(e => e.Diagnosis)
@@ -220,7 +230,7 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<Medication>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Medicati__3213E83F816C65C6");
+            entity.HasKey(e => e.Id).HasName("PK__Medicati__3213E83F15B2B34F");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Description)
@@ -228,12 +238,15 @@ public partial class HospitalManagerContext : DbContext
                 .HasColumnName("description");
             entity.Property(e => e.Dosage)
                 .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("dosage");
             entity.Property(e => e.Manufacturer)
                 .HasMaxLength(100)
+                .IsUnicode(false)
                 .HasColumnName("manufacturer");
             entity.Property(e => e.MedicationName)
                 .HasMaxLength(100)
+                .IsUnicode(false)
                 .HasColumnName("medication_name");
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(10, 2)")
@@ -242,33 +255,38 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<Patient>(entity =>
         {
-            entity.HasKey(e => e.PatientId).HasName("PK__Patients__4D5CE476ED608135");
+            entity.HasKey(e => e.PatientId).HasName("PK__Patients__4D5CE476E03D5922");
 
             entity.Property(e => e.PatientId).HasColumnName("patient_id");
             entity.Property(e => e.Address)
                 .HasMaxLength(255)
+                .IsUnicode(false)
                 .HasColumnName("address");
             entity.Property(e => e.Dob).HasColumnName("dob");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("first_name");
             entity.Property(e => e.Gender)
                 .HasMaxLength(10)
+                .IsUnicode(false)
                 .HasColumnName("gender");
             entity.Property(e => e.LastName)
                 .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("last_name");
             entity.Property(e => e.MedicalHistory)
                 .HasColumnType("text")
                 .HasColumnName("medical_history");
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("phone_number");
         });
 
         modelBuilder.Entity<PrescriptionItem>(entity =>
         {
-            entity.HasKey(e => e.PrescriptionItemId).HasName("PK__Prescrip__C7EDA5C0F2663281");
+            entity.HasKey(e => e.PrescriptionItemId).HasName("PK__Prescrip__C7EDA5C0AE6A3CFE");
 
             entity.Property(e => e.PrescriptionItemId).HasColumnName("prescription_item_id");
             entity.Property(e => e.Instructions)
@@ -277,6 +295,7 @@ public partial class HospitalManagerContext : DbContext
             entity.Property(e => e.RecordId).HasColumnName("record_id");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("status");
 
             entity.HasOne(d => d.Record).WithMany(p => p.PrescriptionItems)
@@ -286,7 +305,7 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<PrescriptionItemDetail>(entity =>
         {
-            entity.HasKey(e => e.PrescriptionItemDetailId).HasName("PK__Prescrip__CEB8E653FE01FF30");
+            entity.HasKey(e => e.PrescriptionItemDetailId).HasName("PK__Prescrip__CEB8E653912802DD");
 
             entity.ToTable("PrescriptionItemDetail");
 
@@ -309,20 +328,24 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<Room>(entity =>
         {
-            entity.HasKey(e => e.RoomId).HasName("PK__Rooms__19675A8A9AEF3C64");
+            entity.HasKey(e => e.RoomId).HasName("PK__Rooms__19675A8A64E00D49");
 
-            entity.HasIndex(e => e.RoomNumber, "UQ__Rooms__FE22F61BD3DDABFB").IsUnique();
+            entity.HasIndex(e => e.RoomNumber, "UQ__Rooms__FE22F61BF4DE2E6F").IsUnique();
 
             entity.Property(e => e.RoomId).HasColumnName("room_id");
             entity.Property(e => e.DepartmentId).HasColumnName("department_id");
             entity.Property(e => e.RoomNumber)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("room_number");
+            entity.Property(e => e.RoomPrice).HasColumnName("room_price");
             entity.Property(e => e.RoomType)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("room_type");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("status");
 
             entity.HasOne(d => d.Department).WithMany(p => p.Rooms)
@@ -332,7 +355,7 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Services__3E0DB8AFD698CCF4");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Services__3E0DB8AFDAE1D678");
 
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
             entity.Property(e => e.ServiceDescription)
@@ -340,6 +363,7 @@ public partial class HospitalManagerContext : DbContext
                 .HasColumnName("service_description");
             entity.Property(e => e.ServiceName)
                 .HasMaxLength(100)
+                .IsUnicode(false)
                 .HasColumnName("service_name");
             entity.Property(e => e.ServicePrice)
                 .HasColumnType("decimal(10, 2)")
@@ -348,30 +372,36 @@ public partial class HospitalManagerContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__B9BE370FCDD6289A");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__B9BE370F3106C6CD");
 
-            entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164B6DB3B8D").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164ACB55FD1").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__Users__F3DBC572260A934E").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Users__F3DBC572B93681E3").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
+                .IsUnicode(false)
                 .HasColumnName("email");
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
+                .IsUnicode(false)
                 .HasColumnName("name");
             entity.Property(e => e.Password)
                 .HasMaxLength(255)
+                .IsUnicode(false)
                 .HasColumnName("password");
             entity.Property(e => e.Phone)
                 .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("phone");
             entity.Property(e => e.Role)
                 .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("role");
             entity.Property(e => e.Username)
                 .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("username");
         });
 
