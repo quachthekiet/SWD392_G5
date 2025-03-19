@@ -14,6 +14,7 @@ namespace HospitalManagement
             builder.Services.AddDbContext<HospitalManagerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
 
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

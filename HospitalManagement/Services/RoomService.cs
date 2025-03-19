@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagement.Services
 {
@@ -26,7 +27,7 @@ namespace HospitalManagement.Services
             {
                 using(var context = new HospitalManagerContext())
                 {
-                    return context.Rooms.ToList();
+                    return context.Rooms.Include(r => r.Department).ToList();
                 }
             }
             catch(Exception ex)
