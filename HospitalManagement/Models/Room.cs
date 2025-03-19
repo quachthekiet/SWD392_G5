@@ -11,6 +11,8 @@ public partial class Room
 
     public string RoomType { get; set; } = null!;
 
+    public int? RoomPrice { get; set; }
+
     public string Status { get; set; } = null!;
 
     public int? DepartmentId { get; set; }
