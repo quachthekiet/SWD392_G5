@@ -20,6 +20,9 @@
                 @Html.DisplayNameFor(model => model.RoomType)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.RoomPrice)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
@@ -38,10 +41,13 @@
                 @Html.DisplayFor(modelItem => item.RoomType)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.RoomPrice)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Department.DepartmentId)
+                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RoomId">Edit</a> |
