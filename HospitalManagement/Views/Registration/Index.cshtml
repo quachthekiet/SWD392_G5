@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HospitalManagement.Models.Appointment>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @($"{item.Doctor.FirstName} {item.Doctor.LastName}")
+            </td>
+            <td>
+                @($"{item.Patient.FirstName} {item.Patient.LastName}")
+            </td>
+            <td>
+                    <a asp-action="Create" asp-route-id="@item.Patient.PatientId">Tạo phác đồ điều trị</a> <br>
+                    <a asp-action="Details" asp-route-id="@item.Patient.PatientId">Xem phác đồ điều trị</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

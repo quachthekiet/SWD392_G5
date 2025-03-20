@@ -1,0 +1,54 @@
+﻿@model HospitalManagement.Models.MedicalRecord
+
+@{
+    ViewData["Title"] = "Phác đồ điều trị";
+}
+
+
+<div>
+    <h4>Phác đồ điều trị</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <h6>Ngày thăm khám</h6>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VisitDate)
+        </dd>
+        <dt class = "col-sm-2">
+            <h6>Chuẩn đoán</h6>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Diagnosis)
+        </dd>
+        <dt class = "col-sm-2">
+            <h6>Đơn thuốc</h6>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Prescription)
+        </dd>
+        <dt class = "col-sm-2">
+            <h6>Trạng thái sức khỏe</h6>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StatusHealthy)
+        </dd>
+        <dt class = "col-sm-2">
+            <h6>Ghi chú</h6>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt class = "col-sm-2">
+            <h6>Bệnh nhân</h6>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Patient.LastName) @Html.DisplayFor(model => model.Patient.FirstName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.RecordId">Sửa phác đồ điều trị</a> </br>
+    <a asp-action="Index">Quay về danh sách thăm khám</a>
+</div>
