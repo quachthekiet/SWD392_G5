@@ -1,0 +1,27 @@
+﻿@model HospitalManagement.Models.Department
+
+@{
+    ViewData["Title"] = "Create Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create New Department</h1>
+
+<h4>Department</h4>
+<hr />
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="DepartmentName">Department Name</label>
+        <input type="text" class="form-control" id="DepartmentName" name="DepartmentName" value="@Model.DepartmentName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea class="form-control" id="Description" name="Description">@Model.Description</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Department</button>
+</form>
+
+<a href="@Url.Action("Index")" class="btn btn-secondary mt-2">Back to List</a>
