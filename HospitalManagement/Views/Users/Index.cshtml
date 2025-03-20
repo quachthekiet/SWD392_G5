@@ -1,0 +1,159 @@
+﻿@model IEnumerable<HospitalManagement.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" id="successMessage">
+        @TempData["SuccessMessage"]
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" id="errorMessage">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<style>
+    /* Thông báo thành công và lỗi */
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    /* Bảng người dùng */
+    .table {
+        width: 100%;
+        margin: 20px 0;
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    /* Nút tạo mới */
+    a.btn-create {
+        display: inline-block;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+        a.btn-create:hover {
+            background-color: #0056b3;
+        }
+
+</style>
+
+<h1>List Users</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>@(item.Department?.DepartmentName ?? "No Department")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        // Ẩn thông báo sau 3 giây
+        setTimeout(function () {
+            var successMessage = document.getElementById('successMessage');
+            var errorMessage = document.getElementById('errorMessage');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+            if (errorMessage) {
+                errorMessage.style.display = 'none';
+            }
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
+}
