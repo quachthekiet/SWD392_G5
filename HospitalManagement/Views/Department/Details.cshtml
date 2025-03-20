@@ -1,4 +1,4 @@
-﻿@model HospitalManagement.Models.Room
+﻿@model HospitalManagement.Models.Department
 
 @{
     ViewData["Title"] = "Details";
@@ -8,29 +8,23 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Room</h4>
+    <h4>Department</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RoomNumber)
+            @Html.DisplayNameFor(model => model.DepartmentName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RoomNumber)
+            @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RoomType)
+            @Html.DisplayNameFor(model => model.Doctors)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RoomType)
+            @Html.DisplayFor(model => model.Rooms)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RoomPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RoomPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
+        @* <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Status)
@@ -40,10 +34,10 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Department.DepartmentId)
-        </dd>
+        </dd> *@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.RoomId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.DepartmentId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
